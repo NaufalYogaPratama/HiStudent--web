@@ -50,11 +50,16 @@ const threadList = document.getElementById("thread-list");
 
 // Real-time Listener
 onSnapshot(collection(db, "threads"), (snapshot) => {
-  threadList.innerHTML = ""; // Clear list
+  threadList.innerHTML = ""; // Clear list sebelum mengisi ulang
   snapshot.forEach((doc) => {
     const thread = doc.data();
     const li = document.createElement("li");
-    li.innerHTML = `<h3>${thread.title}</h3><p>${thread.content}</p>`;
+    li.classList.add("p-4", "bg-gray-100", "rounded-lg", "shadow");
+    li.innerHTML = `
+      <h3 class="text-lg font-bold" flex justify-center>${thread.title}</h3>
+      <p class="text-gray-700 mt-2">${thread.content}</p>
+      <p class="text-sm text-gray-500 mt-2">Posted on: ${thread.createdAt.toDate().toLocaleString()}</p>
+    `;
     threadList.appendChild(li);
   });
 });
