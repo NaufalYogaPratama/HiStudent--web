@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum Discussion</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js" defer></script>
+</head>
+<body>
+  <h1>Forum Discussion</h1>
+
+  <!-- Form untuk Menambahkan Thread -->
+  <div id="add-thread">
+    <h2>Add a Thread</h2>
+    <input id="thread-title" type="text" placeholder="Soal" required>
+    <textarea id="thread-content" placeholder="Jawaban" required></textarea>
+    <button id="post-thread">Post</button>
+  </div>
+
+  <!-- Daftar Thread -->
+  <div id="threads">
+    <h2>Discussion Threads</h2>
+    <ul id="thread-list"></ul>
+  </div>
+</body>
+</html>
