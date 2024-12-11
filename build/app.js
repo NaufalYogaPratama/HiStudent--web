@@ -58,7 +58,9 @@ onSnapshot(collection(db, "threads"), (snapshot) => {
     li.innerHTML = `
       <h3 class="text-lg font-bold" flex justify-center>${thread.title}</h3>
       <p class="text-gray-700 mt-2">${thread.content}</p>
-      <p class="text-sm text-gray-500 mt-2">Posted on: ${thread.createdAt.toDate().toLocaleString()}</p>
+      <p class="text-sm text-gray-500 mt-2">Posted on: ${thread.createdAt
+        .toDate()
+        .toLocaleString()}</p>
     `;
     threadList.appendChild(li);
   });
