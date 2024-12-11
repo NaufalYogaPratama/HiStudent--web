@@ -9,12 +9,13 @@ import {
 
 // Firebase Configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyAiEJl-peNdoYmVWuMUDSWJJ7qGRXgNq-c",
+  authDomain: "histudent-web.firebaseapp.com",
+  projectId: "histudent-web",
+  storageBucket: "histudent-web.firebasestorage.app",
+  messagingSenderId: "472200870701",
+  appId: "1:472200870701:web:3454afe8212c90ee05b1a4",
+  measurementId: "G-Z8H9SQ2F8Y",
 };
 
 // Initialize Firebase
@@ -25,18 +26,24 @@ const postThreadBtn = document.getElementById("post-thread");
 const threadTitle = document.getElementById("thread-title");
 const threadContent = document.getElementById("thread-content");
 
-postThreadBtn.addEventListener("click", async () => {
+postThreadBtn.addEventListener("click", async (event) => {
+  event.preventDefault();
+  console.log("Submit button clicked");
+
   if (!threadTitle.value || !threadContent.value) {
     alert("Please fill in both title and content.");
+    console.log("Missing title or content");
     return;
   }
 
   try {
+    console.log("Adding document to Firestore");
     await addDoc(collection(db, "threads"), {
       title: threadTitle.value,
       content: threadContent.value,
       createdAt: new Date(),
     });
+    console.log("Document successfully added");
     threadTitle.value = "";
     threadContent.value = "";
     alert("Thread posted successfully!");
@@ -49,7 +56,7 @@ const threadList = document.getElementById("thread-list");
 
 // Real-time Listener
 onSnapshot(collection(db, "threads"), (snapshot) => {
-  threadList.innerHTML = ""; // Clear list sebelum mengisi ulang
+  threadList.innerHTML = "";
   snapshot.forEach((doc) => {
     const thread = doc.data();
     const li = document.createElement("li");
